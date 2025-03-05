@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\TomadorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'],)->name('admin.index');
     Route::get('/tomadores', [TomadorController::class, 'index'])->name('admin.tomador.index');
     Route::get('/tomadores/{id}', [TomadorController::class, 'show'])->name('admin.tomadores.show');
     Route::post('/tomadores', [TomadorController::class, 'store'])->name('admin.tomador.store');
